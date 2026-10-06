@@ -9,10 +9,9 @@ markdown; every `##` section becomes a chunk.
 from __future__ import annotations
 
 import os
-from pathlib import Path
-from typing import List, Optional
-
 import urllib.error
+from pathlib import Path
+from typing import List
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field

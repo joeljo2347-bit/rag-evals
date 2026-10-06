@@ -3,6 +3,8 @@
 [![tests](https://github.com/joeljo2347-bit/rag-evals/actions/workflows/tests.yml/badge.svg)](https://github.com/joeljo2347-bit/rag-evals/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 
 Answers dentists' and practice staff's questions from a dental implant supplier's help center,
 **with citations, or "I don't know"**, and an eval harness that measures how often that's right.

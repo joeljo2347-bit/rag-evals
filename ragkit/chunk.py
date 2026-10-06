@@ -30,7 +30,9 @@ def slug(text: str) -> str:
 
 def sections(path: Path) -> List[Chunk]:
     doc = path.stem
-    title, current, body, out = doc, None, [], []
+    title, current = doc, None
+    body: List[str] = []
+    out: List[Chunk] = []
 
     def flush():
         if current and body:

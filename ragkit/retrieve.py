@@ -100,7 +100,7 @@ class Hybrid:
             for rank, hit in enumerate(retriever.search(query, self.depth)):
                 fused[hit.chunk.id] = fused.get(hit.chunk.id, 0.0) + 1.0 / (self.rrf_k + rank + 1)
                 by_id[hit.chunk.id] = hit.chunk
-        best = sorted(fused, key=fused.get, reverse=True)[:k]
+        best = sorted(fused, key=lambda i: fused[i], reverse=True)[:k]
         return [Hit(by_id[i], fused[i]) for i in best]
 
 

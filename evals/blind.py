@@ -66,13 +66,17 @@ def packet() -> None:
     print(f"{len(items)} items -> {OUT / 'packet.md'} + packet.jsonl (key kept in key.json)")
 
 
+def _count(rows, test) -> str:
+    return f"{sum(test(r) for r in rows)}/{len(rows)}"
+
+
 def score() -> None:
     key = json.loads((OUT / "key.json").read_text())
-    grades = [json.loads(l) for l in (OUT / "grades.jsonl").read_text().splitlines() if l.strip()]
+    grades = [json.loads(line) for line in (OUT / "grades.jsonl").read_text().splitlines() if line.strip()]
     missing = set(key) - {g["id"] for g in grades}
     if missing:
         sys.exit(f"The grader skipped {len(missing)} items: {sorted(missing)[:5]}")
-    cases = {json.loads(l)["id"]: json.loads(l) for l in (HERE / "dataset.jsonl").read_text().splitlines()}
+    cases = {c["id"]: c for c in map(json.loads, (HERE / "dataset.jsonl").read_text().splitlines())}
     by_model = defaultdict(list)
     for g in grades:
         k = key[g["id"]]
@@ -84,10 +88,9 @@ def score() -> None:
     for model, rows in sorted(by_model.items()):
         ans = [r for r in rows if r["answerable"]]
         unc = [r for r in rows if not r["answerable"]]
-        pct = lambda xs, f: f"{sum(f(x) for x in xs)}/{len(xs)}"
-        lines.append(f"| {model.replace('_', ':')} | {pct(rows, lambda r: r['correct'])} | "
-                     f"{pct(ans, lambda r: r['correct'])} | {pct(unc, lambda r: r['refused'])} | "
-                     f"{pct(rows, lambda r: r['citations_ok'])} |")
+        lines.append(f"| {model.replace('_', ':')} | {_count(rows, lambda r: r['correct'])} | "
+                     f"{_count(ans, lambda r: r['correct'])} | {_count(unc, lambda r: r['refused'])} | "
+                     f"{_count(rows, lambda r: r['citations_ok'])} |")
     for model, rows in sorted(by_model.items()):
         bad = [r for r in rows if not (r["correct"] and r["citations_ok"])]
         if bad:
