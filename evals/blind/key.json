@@ -1,0 +1,322 @@
+{
+ "b8e5059383": {
+  "model": "gpt-oss_20b",
+  "case": "a01"
+ },
+ "3d94902a69": {
+  "model": "gpt-oss_20b",
+  "case": "a02"
+ },
+ "a1e585a878": {
+  "model": "gpt-oss_20b",
+  "case": "a03"
+ },
+ "5f87d0f0df": {
+  "model": "gpt-oss_20b",
+  "case": "a04"
+ },
+ "528872820a": {
+  "model": "gpt-oss_20b",
+  "case": "a05"
+ },
+ "9eafc59263": {
+  "model": "gpt-oss_20b",
+  "case": "a06"
+ },
+ "d4de122c1c": {
+  "model": "gpt-oss_20b",
+  "case": "a07"
+ },
+ "832d82e42a": {
+  "model": "gpt-oss_20b",
+  "case": "a08"
+ },
+ "b0ec60189f": {
+  "model": "gpt-oss_20b",
+  "case": "a09"
+ },
+ "5d7e66af4c": {
+  "model": "gpt-oss_20b",
+  "case": "a10"
+ },
+ "6c878710b8": {
+  "model": "gpt-oss_20b",
+  "case": "a11"
+ },
+ "415036c8d9": {
+  "model": "gpt-oss_20b",
+  "case": "a12"
+ },
+ "e2c2b2b79b": {
+  "model": "gpt-oss_20b",
+  "case": "a13"
+ },
+ "13905270de": {
+  "model": "gpt-oss_20b",
+  "case": "a14"
+ },
+ "6f6d5f69cc": {
+  "model": "gpt-oss_20b",
+  "case": "a15"
+ },
+ "fbe321476a": {
+  "model": "gpt-oss_20b",
+  "case": "a16"
+ },
+ "4aa4093eb1": {
+  "model": "gpt-oss_20b",
+  "case": "a17"
+ },
+ "946da529fa": {
+  "model": "gpt-oss_20b",
+  "case": "a18"
+ },
+ "69a65ea7fb": {
+  "model": "gpt-oss_20b",
+  "case": "a19"
+ },
+ "df98308f47": {
+  "model": "gpt-oss_20b",
+  "case": "a20"
+ },
+ "87d73e7af7": {
+  "model": "gpt-oss_20b",
+  "case": "a21"
+ },
+ "a6eacbe2f1": {
+  "model": "gpt-oss_20b",
+  "case": "a22"
+ },
+ "714db881aa": {
+  "model": "gpt-oss_20b",
+  "case": "a23"
+ },
+ "aed467c148": {
+  "model": "gpt-oss_20b",
+  "case": "a24"
+ },
+ "9735a5c2cc": {
+  "model": "gpt-oss_20b",
+  "case": "a25"
+ },
+ "b0ae75b578": {
+  "model": "gpt-oss_20b",
+  "case": "a26"
+ },
+ "259051275c": {
+  "model": "gpt-oss_20b",
+  "case": "a27"
+ },
+ "712e31dd26": {
+  "model": "gpt-oss_20b",
+  "case": "a28"
+ },
+ "76cf00bda3": {
+  "model": "gpt-oss_20b",
+  "case": "a29"
+ },
+ "dd231de2fa": {
+  "model": "gpt-oss_20b",
+  "case": "a30"
+ },
+ "3a6c01fd01": {
+  "model": "gpt-oss_20b",
+  "case": "a31"
+ },
+ "2687f48fb9": {
+  "model": "gpt-oss_20b",
+  "case": "a32"
+ },
+ "c65ac70604": {
+  "model": "gpt-oss_20b",
+  "case": "u01"
+ },
+ "0feaaa0f41": {
+  "model": "gpt-oss_20b",
+  "case": "u02"
+ },
+ "4a60ab9334": {
+  "model": "gpt-oss_20b",
+  "case": "u03"
+ },
+ "cca453cbba": {
+  "model": "gpt-oss_20b",
+  "case": "u04"
+ },
+ "14c7dd16ad": {
+  "model": "gpt-oss_20b",
+  "case": "u05"
+ },
+ "73fac919d1": {
+  "model": "gpt-oss_20b",
+  "case": "u06"
+ },
+ "ee7c4af7dc": {
+  "model": "gpt-oss_20b",
+  "case": "u07"
+ },
+ "690c22004b": {
+  "model": "gpt-oss_20b",
+  "case": "u08"
+ },
+ "58d0c578b4": {
+  "model": "qwen3_8b",
+  "case": "a01"
+ },
+ "06bdcfb457": {
+  "model": "qwen3_8b",
+  "case": "a02"
+ },
+ "f30eba409b": {
+  "model": "qwen3_8b",
+  "case": "a03"
+ },
+ "39f151da9e": {
+  "model": "qwen3_8b",
+  "case": "a04"
+ },
+ "51cf257c3e": {
+  "model": "qwen3_8b",
+  "case": "a05"
+ },
+ "eb65488751": {
+  "model": "qwen3_8b",
+  "case": "a06"
+ },
+ "ff9c5fe35e": {
+  "model": "qwen3_8b",
+  "case": "a07"
+ },
+ "ff0274d225": {
+  "model": "qwen3_8b",
+  "case": "a08"
+ },
+ "b1f5ab1f15": {
+  "model": "qwen3_8b",
+  "case": "a09"
+ },
+ "31e6091e46": {
+  "model": "qwen3_8b",
+  "case": "a10"
+ },
+ "6abfa40f14": {
+  "model": "qwen3_8b",
+  "case": "a11"
+ },
+ "42ae421840": {
+  "model": "qwen3_8b",
+  "case": "a12"
+ },
+ "ad67fef718": {
+  "model": "qwen3_8b",
+  "case": "a13"
+ },
+ "9b31f89954": {
+  "model": "qwen3_8b",
+  "case": "a14"
+ },
+ "4f8513f213": {
+  "model": "qwen3_8b",
+  "case": "a15"
+ },
+ "8b1de97455": {
+  "model": "qwen3_8b",
+  "case": "a16"
+ },
+ "251832dd82": {
+  "model": "qwen3_8b",
+  "case": "a17"
+ },
+ "ba134ee09b": {
+  "model": "qwen3_8b",
+  "case": "a18"
+ },
+ "0e30d32299": {
+  "model": "qwen3_8b",
+  "case": "a19"
+ },
+ "113bf8e15a": {
+  "model": "qwen3_8b",
+  "case": "a20"
+ },
+ "50788c2e78": {
+  "model": "qwen3_8b",
+  "case": "a21"
+ },
+ "7cf49cb5b7": {
+  "model": "qwen3_8b",
+  "case": "a22"
+ },
+ "eab98f130c": {
+  "model": "qwen3_8b",
+  "case": "a23"
+ },
+ "8f84067a50": {
+  "model": "qwen3_8b",
+  "case": "a24"
+ },
+ "a6dc960238": {
+  "model": "qwen3_8b",
+  "case": "a25"
+ },
+ "257ff5069d": {
+  "model": "qwen3_8b",
+  "case": "a26"
+ },
+ "9065a21f4b": {
+  "model": "qwen3_8b",
+  "case": "a27"
+ },
+ "c9836fca3b": {
+  "model": "qwen3_8b",
+  "case": "a28"
+ },
+ "c90f73c8f1": {
+  "model": "qwen3_8b",
+  "case": "a29"
+ },
+ "02b66dafe5": {
+  "model": "qwen3_8b",
+  "case": "a30"
+ },
+ "6202df8385": {
+  "model": "qwen3_8b",
+  "case": "a31"
+ },
+ "cf15a4a6e8": {
+  "model": "qwen3_8b",
+  "case": "a32"
+ },
+ "6e0b1f4e47": {
+  "model": "qwen3_8b",
+  "case": "u01"
+ },
+ "35a6625c4f": {
+  "model": "qwen3_8b",
+  "case": "u02"
+ },
+ "c3fed37a4b": {
+  "model": "qwen3_8b",
+  "case": "u03"
+ },
+ "cdd04d3c91": {
+  "model": "qwen3_8b",
+  "case": "u04"
+ },
+ "50ed949fe7": {
+  "model": "qwen3_8b",
+  "case": "u05"
+ },
+ "59df47cf28": {
+  "model": "qwen3_8b",
+  "case": "u06"
+ },
+ "092793c0bd": {
+  "model": "qwen3_8b",
+  "case": "u07"
+ },
+ "390d7d2566": {
+  "model": "qwen3_8b",
+  "case": "u08"
+ }
+}

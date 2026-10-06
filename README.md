@@ -30,7 +30,39 @@ AMII's code, documents and data stay private.
 
 ## Results
 
-<!-- RAG-RESULTS -->
+Two local models answered the same 40 questions (hybrid retrieval, top 4 sources).
+
+**Graded blind** by a separate agent that saw only the help center, each question, the sources the
+model was shown, and the answer. It had no expected answers, no model names, and opaque, shuffled
+item ids, and was told to mark anything unstated or unhedged as wrong
+([evals/blind/results.md](evals/blind/results.md)):
+
+| Model | Correct | Answerable correct | Uncovered questions refused | Citations OK |
+|---|---|---|---|---|
+| gpt-oss:20b | 37/40 | 29/32 | 8/8 | 40/40 |
+| qwen3:8b | 39/40 | 31/32 | 8/8 | 40/40 |
+
+What it marked down: details the help center doesn't state ("within 7 days *of receipt*"), an added
+justification ("for maintaining performance and safety"), and an unhedged inference ("yes, you can
+still cancel" when packing only *usually* happens within 2 hours). No answer invented a policy or a
+figure.
+
+**Automatic checks**, fixed before any run ([evals/results.md](evals/results.md)): fact match
+97% for both models, right source cited 100%, uncovered questions refused 100%, no false refusals.
+
+**Retrieval** (answerable questions, section chunks):
+
+| Retriever | hit@1 | hit@3 | MRR |
+|---|---|---|---|
+| BM25 | 91% | 100% | 0.95 |
+| Dense (nomic-embed-text) | 88% | 91% | 0.89 |
+| Hybrid (rank fusion) | 91% | 97% | 0.95 |
+
+Fixed 40-word windows instead of sections cost 20–26 points of hit@1 for every retriever. BM25 and
+dense miss different questions: "We're a practice in Texas" never matches a page that says "all
+other states", and "if the replacement sizes cost more" pulls both toward "replacement drills".
+Hybrid is the default because it recovers some of each; that choice was made on this same small
+set.
 
 ## How it works
 

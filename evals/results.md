@@ -18,7 +18,7 @@
 | Model | Correct | Cites right source | Faithful (judge) | Refuses uncovered | False refusals | Uncited | s/question |
 |---|---|---|---|---|---|---|---|
 | gpt-oss:20b | 97% | 100% | 91% | 100% | 0% | 0% | 2.2 |
-| qwen3:8b | 97% | 100% | 100% | 100% | 0% | 0% | 5.3 |
+| qwen3:8b | 97% | 100% | 100% | 100% | 0% | 0% | 5.5 |
 
 ### Misses: gpt-oss:20b
 

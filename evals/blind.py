@@ -4,14 +4,15 @@
     python -m evals.blind score     # evals/blind/grades.jsonl + key.json -> evals/blind/results.md
 
 The packet holds only what a careful outside reader needs: the help center's full text, each
-question, the numbered sources the answering model was shown, and its answer. Models are
-replaced by letters and the items are shuffled; the key that maps them back stays in key.json,
+question, the numbered sources the answering model was shown, and its answer. Item ids are
+opaque hashes (no model, no case id) and the items are shuffled; the key that maps them back stays in key.json,
 which the grader never sees. No expected answers are included: the grader decides from the help
 center itself.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
 import random
 import sys
@@ -49,11 +50,10 @@ Reply with one JSON object per line, in this exact form, for every item id:
 def packet() -> None:
     items, key = [], {}
     runs = sorted((HERE / "runs").glob("*.jsonl"))
-    letters = dict(zip([r.stem for r in runs], "ABCDEFGH"))
     for run in runs:
         for line in run.read_text().splitlines():
             row = json.loads(line)
-            item_id = f"{letters[run.stem]}-{row['id']}"
+            item_id = hashlib.sha256(f"{run.stem}|{row['id']}".encode()).hexdigest()[:10]
             items.append({"id": item_id, "question": row["question"], "sources": row["sources"],
                           "answer": row["answer"]})
             key[item_id] = {"model": run.stem, "case": row["id"]}
