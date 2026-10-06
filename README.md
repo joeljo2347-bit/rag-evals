@@ -8,19 +8,10 @@
 
 Answers dentists' and practice staff's questions from a dental implant supplier's help center,
 **with citations, or "I don't know"**, and an eval harness that measures how often that's right.
-Retrieval, answering and scoring are all in plain Python; models run locally through Ollama.
+Retrieval, answering and scoring are all in plain Python; the models are open-weight and self-hosted.
 
-```console
-$ python -m ragkit.cli "We're a practice in Texas. When can we exchange implant sizes?"
-[1] 0.032  Exchanges > Exchange windows
-[2] 0.031  Implants and compatibility > Implant sizes
-[3] 0.031  Warranty > Implant warranty
-[4] 0.030  Implants and compatibility > Abutment compatibility
-
-You can exchange implant sizes in March and September each year. This applies to all states
-outside of California, including Texas.[1]
-```
-<sub>Real output from gpt-oss:20b, hybrid retrieval (scores are fused ranks). The sources never mention Texas; the model works it out from "all other states".</sub>
+![A real run: a question about exchange windows, the four sources retrieved, and a cited answer](docs/answer-demo.gif)
+<sub>A real run, hybrid retrieval. The sources never mention Texas; the model works it out from "all other states", and cites the page it used.</sub>
 
 ## Where this comes from
 
@@ -32,7 +23,7 @@ AMII's code, documents and data stay private.
 
 ## Results
 
-Two local models answered the same 40 questions (hybrid retrieval, top 4 sources).
+Two open-weight models I run myself, Model A (20B) and Model B (8B), answered the same 40 questions (hybrid retrieval, top 4 sources).
 
 **Graded blind** by a separate agent that saw only the help center, each question, the sources the
 model was shown, and the answer. It had no expected answers, no model names, and opaque, shuffled
@@ -41,8 +32,8 @@ item ids, and was told to mark anything unstated or unhedged as wrong
 
 | Model | Correct | Answerable correct | Uncovered questions refused | Citations OK |
 |---|---|---|---|---|
-| gpt-oss:20b | 37/40 | 29/32 | 8/8 | 40/40 |
-| qwen3:8b | 39/40 | 31/32 | 8/8 | 40/40 |
+| Model A (20B) | 37/40 | 29/32 | 8/8 | 40/40 |
+| Model B (8B) | 39/40 | 31/32 | 8/8 | 40/40 |
 
 What it marked down: details the help center doesn't state ("within 7 days *of receipt*"), an added
 justification ("for maintaining performance and safety"), and an unhedged inference ("yes, you can
@@ -57,7 +48,7 @@ figure.
 | Retriever | hit@1 | hit@3 | MRR |
 |---|---|---|---|
 | BM25 | 91% | 100% | 0.95 |
-| Dense (nomic-embed-text) | 88% | 91% | 0.89 |
+| Dense (open embedding model) | 88% | 91% | 0.89 |
 | Hybrid (rank fusion) | 91% | 97% | 0.95 |
 
 Fixed 40-word windows instead of sections cost 20–26 points of hit@1 for every retriever. BM25 and
@@ -72,7 +63,7 @@ set.
 flowchart LR
     D[12 help-center pages] --> C[Chunks<br/>one per section]
     C --> B[BM25<br/>keywords]
-    C --> E[nomic-embed-text<br/>vectors]
+    C --> E[Embedding model<br/>vectors]
     Q[Question] --> B & E
     B & E --> R[Top 4 sources<br/>fused by rank]
     R --> M[Local model<br/>answers with citations]
@@ -84,7 +75,7 @@ flowchart LR
 |---|---|
 | Chunking by section or by fixed word windows (to compare) | `ragkit/chunk.py` |
 | BM25 with light stemming, dense retrieval, and hybrid by reciprocal rank fusion | `ragkit/retrieve.py` |
-| Embeddings from Ollama, cached on disk; a hashing stand-in for tests | `ragkit/embed.py` |
+| Embeddings from a local model server, cached on disk; a hashing stand-in for tests | `ragkit/embed.py` |
 | Answering: numbered sources in, citations parsed and checked by code | `ragkit/answer.py` |
 | Scoring: hit@k, MRR, fact match, citation accuracy, refusals | `ragkit/metrics.py` |
 | Eval runner, LLM judge, report | `evals/run.py` |
@@ -100,7 +91,7 @@ cover, where the right answer is "I don't know".
 - **Correct:** every expected fact appears in the answer, after normalizing case, dashes and spacing.
 - **Cites the right source:** at least one citation points at the section holding the answer.
 - **Faithful (LLM judge):** a model reads the sources and the answer and says whether every claim
-  is supported. By default the judge is gpt-oss:20b, the same model that answers in the first run,
+  is supported. By default the judge is Model A, the same model that answers in the first run,
   which is a known bias; pass `--judge` to use a different one.
 - **Refusals:** says "I don't know" for uncovered questions, and doesn't for covered ones.
 
@@ -111,25 +102,15 @@ Per-question results, including every miss, are in `evals/runs/`.
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 .venv/bin/pytest -q                                   # no model needed
-ollama pull nomic-embed-text && ollama pull gpt-oss:20b
 .venv/bin/python -m ragkit.cli "How long can I keep a loaner surgical kit?"
 .venv/bin/python -m evals.run --retrieval-only       # seconds
-.venv/bin/python -m evals.run --models gpt-oss:20b,qwen3:8b
+.venv/bin/python -m evals.run                        # answers, judge and report
 .venv/bin/uvicorn ragkit.api:app --port 8000         # POST /ask; docs at /docs
 ```
 
-Point it at your own markdown with `RAG_CORPUS=/path/to/docs`: every `##` section becomes a chunk.
-
-With Docker, and Ollama on the host:
-
-```bash
-docker build -t rag-evals .
-docker run -p 8000:8000 rag-evals                       # Docker Desktop (Mac, Windows)
-docker run -p 8000:8000 --add-host=host.docker.internal:host-gateway rag-evals   # Linux
-```
-
-On Linux, start Ollama with `OLLAMA_HOST=0.0.0.0`. The API embeds the documents when it starts, so
-it needs Ollama running first; if it can't reach it, it stops with a message saying so.
+Answering and embedding need a local model server (configured in `ragkit/answer.py` and
+`ragkit/embed.py`). Point it at your own markdown with `RAG_CORPUS=/path/to/docs`: every `##`
+section becomes a chunk. `docker build -t rag-evals .` builds the API image.
 
 ## Limits
 

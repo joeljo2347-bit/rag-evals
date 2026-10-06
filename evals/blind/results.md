@@ -5,15 +5,15 @@ answer was given and the answers: no expected answers, no model names, items shu
 
 | Model | Correct | Answerable correct | Uncovered refused | Citations OK |
 |---|---|---|---|---|
-| gpt-oss:20b | 37/40 | 29/32 | 8/8 | 40/40 |
-| qwen3:8b | 39/40 | 31/32 | 8/8 | 40/40 |
+| Model A | 37/40 | 29/32 | 8/8 | 40/40 |
+| Model B | 39/40 | 31/32 | 8/8 | 40/40 |
 
-### Marked down: gpt-oss:20b
+### Marked down: Model A
 
 - **a20** Adds 'of receipt', which the help center does not state.
 - **a29** Adds unsupported claim that the interval is for maintaining performance and safety.
 - **a30** Says 45 days overdue; help center says unpaid after 45 days (invoices are due at 30 days).
 
-### Marked down: qwen3:8b
+### Marked down: Model B
 
 - **a03** Unhedged claim the order can be cancelled; packing only usually happens within 2 hours.
