@@ -1,0 +1,40 @@
+{"id": "a01", "question": "How long does it take to get a new practice account approved?", "answerable": true, "sections": ["ordering#who-can-order"], "facts": ["1 business day|one business day"]}
+{"id": "a02", "question": "If I order at 3 in the afternoon Pacific, when does it ship?", "answerable": true, "sections": ["ordering#placing-an-order"], "facts": ["next business day"]}
+{"id": "a03", "question": "Can I still cancel an order I placed an hour ago?", "answerable": true, "sections": ["ordering#order-changes-and-cancellation"], "facts": ["packed"]}
+{"id": "a04", "question": "One implant size is out of stock. Do I pay shipping twice?", "answerable": true, "sections": ["ordering#backorders"], "facts": ["no extra|free|at no"]}
+{"id": "a05", "question": "What's the list price of an implant?", "answerable": true, "sections": ["pricing#list-prices"], "facts": ["$395"]}
+{"id": "a06", "question": "How much of a discount do partner practices get?", "answerable": true, "sections": ["pricing#partner-tiers"], "facts": ["25%"]}
+{"id": "a07", "question": "I teach implant courses. What discount do I get?", "answerable": true, "sections": ["pricing#partner-tiers"], "facts": ["35%"]}
+{"id": "a08", "question": "Does the partner discount apply to the surgical kit?", "answerable": true, "sections": ["pricing#partner-tiers", "kits#buying-a-kit"], "facts": ["not|no|don't|doesn't"]}
+{"id": "a09", "question": "Is there a bulk discount if I order a lot of implants at once?", "answerable": true, "sections": ["pricing#volume-pricing"], "facts": ["20", "5%"]}
+{"id": "a10", "question": "How long is a quote good for?", "answerable": true, "sections": ["pricing#quotes"], "facts": ["30 days"]}
+{"id": "a11", "question": "How much is ground shipping?", "answerable": true, "sections": ["shipping#methods-and-costs"], "facts": ["$15"]}
+{"id": "a12", "question": "At what order total is shipping free?", "answerable": true, "sections": ["shipping#methods-and-costs"], "facts": ["$1,000|$1000"]}
+{"id": "a13", "question": "Can you deliver on a Saturday?", "answerable": true, "sections": ["shipping#where-we-ship"], "facts": ["not|no"]}
+{"id": "a14", "question": "We're a practice in Texas. When can we exchange implant sizes?", "answerable": true, "sections": ["exchanges#exchange-windows"], "facts": ["march", "september"]}
+{"id": "a15", "question": "Our office is in California. Which months are the exchange window?", "answerable": true, "sections": ["exchanges#exchange-windows"], "facts": ["april", "october"]}
+{"id": "a16", "question": "Can I exchange an implant whose box I already opened?", "answerable": true, "sections": ["exchanges#what-can-be-exchanged"], "facts": ["not|no|cannot|can't"]}
+{"id": "a17", "question": "How much shelf life must an item have to be exchanged?", "answerable": true, "sections": ["exchanges#what-can-be-exchanged"], "facts": ["12 months|twelve months|1 year|one year"]}
+{"id": "a18", "question": "If the replacement sizes cost more, who pays?", "answerable": true, "sections": ["exchanges#how-an-exchange-works"], "facts": ["practice"]}
+{"id": "a19", "question": "Is there a fee to return sealed products for credit?", "answerable": true, "sections": ["returns#returns-for-credit"], "facts": ["15%"]}
+{"id": "a20", "question": "You sent the wrong abutment. How long do I have to report it?", "answerable": true, "sections": ["returns#wrong-or-damaged-items"], "facts": ["7 days|seven days"]}
+{"id": "a21", "question": "Which abutment fits a 3.0 mm implant?", "answerable": true, "sections": ["products#abutment-compatibility"], "facts": ["narrow"]}
+{"id": "a22", "question": "Do healing caps come with the implant?", "answerable": true, "sections": ["products#healing-caps"], "facts": ["cover screw|sold separately|separately"]}
+{"id": "a23", "question": "What diameters do your implants come in?", "answerable": true, "sections": ["products#implant-sizes"], "facts": ["3.0", "5.0"]}
+{"id": "a24", "question": "Where do I record the lot number?", "answerable": true, "sections": ["sterility#lot-numbers"], "facts": ["chart"]}
+{"id": "a25", "question": "How quickly are practices told about a recall?", "answerable": true, "sections": ["sterility#recalls"], "facts": ["24 hours"]}
+{"id": "a26", "question": "An implant didn't integrate. Will you replace it?", "answerable": true, "sections": ["warranty#implant-warranty"], "facts": ["lifetime|free"]}
+{"id": "a27", "question": "How long are abutments covered against fracture?", "answerable": true, "sections": ["warranty#prosthetic-parts"], "facts": ["5-year|5 year|five-year|five year|5 years"]}
+{"id": "a28", "question": "How long can I keep a loaner surgical kit?", "answerable": true, "sections": ["kits#loaner-kits"], "facts": ["14 days"]}
+{"id": "a29", "question": "How often should drills be replaced?", "answerable": true, "sections": ["kits#drill-replacement"], "facts": ["20 uses|20"]}
+{"id": "a30", "question": "When does an unpaid invoice put our account on hold?", "answerable": true, "sections": ["billing#late-payments"], "facts": ["45 days"]}
+{"id": "a31", "question": "How many CE credits is the two-day hands-on course?", "answerable": true, "sections": ["courses#live-courses"], "facts": ["16"]}
+{"id": "a32", "question": "How many staff users can a practice account have?", "answerable": true, "sections": ["accounts#users"], "facts": ["10|ten"]}
+{"id": "u01", "question": "Do you sell bone graft material?", "answerable": false, "sections": [], "facts": []}
+{"id": "u02", "question": "What's the phone number for the sales team?", "answerable": false, "sections": [], "facts": []}
+{"id": "u03", "question": "Do you offer financing plans for patients?", "answerable": false, "sections": [], "facts": []}
+{"id": "u04", "question": "Who founded the company?", "answerable": false, "sections": [], "facts": []}
+{"id": "u05", "question": "Which sales rep covers Oregon?", "answerable": false, "sections": [], "facts": []}
+{"id": "u06", "question": "Are your implants FDA cleared for immediate loading?", "answerable": false, "sections": [], "facts": []}
+{"id": "u07", "question": "What torque should I use to seat a 4.0 mm implant?", "answerable": false, "sections": [], "facts": []}
+{"id": "u08", "question": "Do you have a referral program for other dentists?", "answerable": false, "sections": [], "facts": []}
