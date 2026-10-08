@@ -8,12 +8,18 @@ Every chunk remembers the section it came from, which is what the evals score ag
 
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
 CORPUS = Path(__file__).resolve().parent.parent / "corpus"
+
+
+def corpus_dir() -> Path:
+    """The folder to answer from: RAG_CORPUS if set, else the bundled help center."""
+    return Path(os.environ.get("RAG_CORPUS", CORPUS))
 
 
 @dataclass(frozen=True)

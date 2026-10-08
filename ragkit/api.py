@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import os
 import urllib.error
-from pathlib import Path
 from typing import List
 
 from fastapi import FastAPI, HTTPException
@@ -43,7 +42,7 @@ class AskOut(BaseModel):
 
 def create_app(retriever=None, llm=None) -> FastAPI:
     if retriever is None:
-        corpus = Path(os.environ.get("RAG_CORPUS", chunk.CORPUS))
+        corpus = chunk.corpus_dir()
         try:
             retriever = retrieve.build(os.environ.get("RAG_RETRIEVER", "hybrid"),
                                        chunk.load("section", corpus), OllamaEmbedder())

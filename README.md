@@ -104,13 +104,13 @@ Per-question results, including every miss, are in `evals/runs/`.
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 .venv/bin/pytest -q                                   # no model needed
 .venv/bin/python -m ragkit.cli "How long can I keep a loaner surgical kit?"
-.venv/bin/python -m evals.run --retrieval-only       # seconds
-.venv/bin/python -m evals.run                        # answers, judge and report
+.venv/bin/python -m evals.run --retrieval-only       # seconds; prints the retrieval tables
+.venv/bin/python -m evals.run                        # answers, judge; rewrites evals/results.md
 .venv/bin/uvicorn ragkit.api:app --port 8000         # POST /ask; docs at /docs
 ```
 
 Answering and embedding need a local model server (configured in `ragkit/answer.py` and
-`ragkit/embed.py`). Point it at your own markdown with `RAG_CORPUS=/path/to/docs`: every `##`
+`ragkit/embed.py`). Point the CLI or the API at your own markdown with `RAG_CORPUS=/path/to/docs`: every `##`
 section becomes a chunk. `docker build -t rag-evals .` builds the API image.
 
 ## Limits

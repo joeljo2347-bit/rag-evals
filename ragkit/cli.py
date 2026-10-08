@@ -2,6 +2,7 @@
 
     python -m ragkit.cli "Can I exchange an implant whose box I opened?"
     python -m ragkit.cli --search-only --retriever bm25 "loaner kit deposit"
+    RAG_CORPUS=/path/to/docs python -m ragkit.cli "..."   # your own markdown
 """
 
 from __future__ import annotations
@@ -23,7 +24,7 @@ def main() -> None:
     p.add_argument("--search-only", action="store_true")
     a = p.parse_args()
 
-    r = retrieve.build(a.retriever, chunk.load(a.chunking), OllamaEmbedder())
+    r = retrieve.build(a.retriever, chunk.load(a.chunking, chunk.corpus_dir()), OllamaEmbedder())
     hits = r.search(a.question, a.k)
     for i, h in enumerate(hits, 1):
         print(f"[{i}] {h.score:.3f}  {h.chunk.title}")

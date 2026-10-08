@@ -155,3 +155,25 @@ def test_answer_one_records_what_the_grader_needs(sections):
             "sections": ["kits#drill-replacement"], "facts": ["$65"]}
     row = answer_one(case, retrieve.BM25(sections), lambda s, u: "Single drills cost $65 [1].", None, 2)
     assert row["score"]["correct"] == 1.0 and row["sources"].startswith("[1] Surgical kits > Drill replacement")
+
+
+def test_retrieval_only_leaves_published_results_alone(monkeypatch, capsys):
+    import sys
+
+    from evals import run
+    monkeypatch.setattr(run, "OllamaEmbedder", HashEmbedder)
+    monkeypatch.setattr(run, "write_report", lambda *a, **kw: pytest.fail("results.md was overwritten"))
+    monkeypatch.setattr(sys, "argv", ["run", "--retrieval-only"])
+    run.main()
+    assert "bm25   section" in capsys.readouterr().out
+
+
+def test_cli_answers_from_rag_corpus(tmp_path, monkeypatch, capsys):
+    import sys
+
+    from ragkit import cli
+    (tmp_path / "office.md").write_text("# Office\n\n## Parking\nVisitors park in lot B.\n")
+    monkeypatch.setenv("RAG_CORPUS", str(tmp_path))
+    monkeypatch.setattr(sys, "argv", ["cli", "--search-only", "--retriever", "bm25", "where to park"])
+    cli.main()
+    assert "Office > Parking" in capsys.readouterr().out

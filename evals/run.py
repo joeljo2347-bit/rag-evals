@@ -2,7 +2,7 @@
 
     python -m evals.run                                  # retrieval + answers with gpt-oss:20b
     python -m evals.run --models gpt-oss:20b,qwen3:8b    # compare answer models
-    python -m evals.run --retrieval-only                 # fast: no chat model needed
+    python -m evals.run --retrieval-only                 # fast: prints retrieval only, results.md untouched
 
 1. Retrieval: every retriever x chunking strategy on the answerable questions (hit@1, hit@3, MRR).
 2. Answers: the chosen retriever feeds each model; scored on facts, citations, refusals and,
@@ -137,13 +137,14 @@ def main() -> None:
     cases, embedder = load_cases(), OllamaEmbedder()
     print("Retrieval")
     retrieval_rows = run_retrieval(cases, embedder, a.k)
+    if a.retrieval_only:  # print only: a partial run must not overwrite the published results
+        return
+    r = retrieve.build(a.retriever, chunk.load(a.chunking), embedder)
+    judge_llm = OllamaChat(a.judge) if a.judge else None
     answer_rows = []
-    if not a.retrieval_only:
-        r = retrieve.build(a.retriever, chunk.load(a.chunking), embedder)
-        judge_llm = OllamaChat(a.judge) if a.judge else None
-        for model in a.models.split(","):
-            print(f"Answers: {model}")
-            answer_rows.append(run_answers(cases, r, model, judge_llm, a.k))
+    for model in a.models.split(","):
+        print(f"Answers: {model}")
+        answer_rows.append(run_answers(cases, r, model, judge_llm, a.k))
     write_report(retrieval_rows, answer_rows, f"{a.retriever} retriever, {a.chunking} chunks",
                  a.judge or "none", sum(c["answerable"] for c in cases),
                  sum(not c["answerable"] for c in cases), a.k)
