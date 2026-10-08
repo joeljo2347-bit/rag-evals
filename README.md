@@ -51,11 +51,12 @@ figure.
 | Dense (open embedding model) | 88% | 91% | 0.89 |
 | Hybrid (rank fusion) | 91% | 97% | 0.95 |
 
-Fixed 40-word windows instead of sections cost 20–26 points of hit@1 for every retriever. BM25 and
-dense miss different questions: "We're a practice in Texas" never matches a page that says "all
-other states", and "if the replacement sizes cost more" pulls both toward "replacement drills".
-Hybrid is the default because it recovers some of each; that choice was made on this same small
-set.
+Fixed 40-word windows instead of sections cost every retriever 22–26 points of hit@1 (7 or 8 of
+the 32 questions). BM25 and dense miss different questions: "We're a practice in Texas" never
+matches a page that says "all other states", and "if the replacement sizes cost more" pulls dense
+toward "replacement drills" (the right page drops to 6th) while BM25 ranks it 1st; hybrid ranks it
+2nd. Hybrid is the default because it recovers some of each; that choice was made on this same
+small set.
 
 ## How it works
 
